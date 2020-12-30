@@ -16,8 +16,11 @@ module.exports = (env, options) => {
         new OptimizeCSSAssetsPlugin({})
       ]
     },
+    resolve: {
+      extensions: [".js", ".jsx", ".ts", "tsx"]
+    },
     entry: {
-      'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
+      "./js/app.js": "./js/app.tsx"
     },
     output: {
       filename: '[name].js',
@@ -28,7 +31,7 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(j|t)sx?$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader'
